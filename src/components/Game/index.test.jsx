@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { testConstants } from "../../constants/testConstants";
 import Game from "./";
 
-const { TITLE, SCORE_TITLE, GAME_SCORE, LOVE_ALL } = testConstants;
+const { TITLE, SCORE_TITLE, GAME_SCORE, PLAYER_ONE, LOVE_ALL, FIFTEEN_LOVE } = testConstants;
 
 describe("Tennis Game", () => {
   beforeEach(() => {
@@ -25,5 +25,11 @@ describe("Set Game Score", () => {
 
   test("Love-All when the game starts", () => {
     expect(screen.getByTestId(GAME_SCORE).textContent).toEqual(LOVE_ALL);
+  });
+
+  test("Fifteen-Love when the player one scores once", () => {
+    fireEvent.click(screen.getByTestId(PLAYER_ONE));
+
+    expect(screen.getByTestId(GAME_SCORE).textContent).toEqual(FIFTEEN_LOVE);
   });
 });
