@@ -9,6 +9,7 @@ const applicationConstants = {
   ONCE: 1,
   TWICE: 2,
   THRICE: 3,
+  ALL: "-All",
   LOVE: 0,
   PLAYER_TITLE: "Title ",
   LOVE_ALL: "Love-All",

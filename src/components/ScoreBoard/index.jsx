@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { applicationConstants, scoreLookUp } from "../../constants/applicationConstants";
 import "./index.css";
 
-const { SCORE_TITLE, GAME_SCORE, LOVE, ONCE, THRICE, LOVE_ALL } = applicationConstants;
+const { SCORE_TITLE, GAME_SCORE, LOVE, ONCE, THRICE, ALL, LOVE_ALL } = applicationConstants;
 
 const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
   const [gameScore, setGameScore] = useState(LOVE_ALL);
@@ -16,12 +16,19 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
     return playerTwoScore >= ONCE && playerTwoScore <= THRICE;
   };
 
+  const hasBothPlayersScoresEqual = () => {
+    return playerOneScore === playerTwoScore;
+  };
+
   const calculateGameScore = () => {
     if (isPlayerOneScoreBetweenOneAndThree() && playerTwoScore === LOVE) {
       return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
     }
     if (isPlayerTwoScoreBetweenOneAndThree() && playerOneScore === LOVE) {
       return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
+    }
+    if (hasBothPlayersScoresEqual() && playerOneScore === ONCE) {
+      return `${scoreLookUp[playerOneScore]}${ALL}`;
     }
   };
 
