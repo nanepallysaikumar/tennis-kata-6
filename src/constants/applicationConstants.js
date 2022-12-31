@@ -6,14 +6,16 @@ const applicationConstants = {
   SCORES_A_POINT: 1,
   SCORED: "Scored",
   ONCE: 1,
-  TWICE: 2,
   THRICE: 3,
   LOVE: 0,
   PLAYER_TITLE: "Title ",
-  LOVE_ALL: "Love-All",
-  FIFTEEN_LOVE: "Fifteen-Love",
-  THIRTY_LOVE: "Thirty-Love",
-  FORTY_LOVE: "Forty-Love"
+  LOVE_ALL: "Love-All"
 };
 
-export { applicationConstants };
+const scoreLookUp = {
+  1: "Fifteen",
+  2: "Thirty",
+  3: "Forty"
+};
+
+export { applicationConstants, scoreLookUp };
