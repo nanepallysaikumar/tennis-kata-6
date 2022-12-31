@@ -10,6 +10,7 @@ const applicationConstants = {
   TWICE: 2,
   THRICE: 3,
   ALL: "-All",
+  HYPHEN: "-",
   LOVE: 0,
   PLAYER_TITLE: "Title ",
   LOVE_ALL: "Love-All",

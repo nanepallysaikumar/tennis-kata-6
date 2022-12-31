@@ -1,49 +1,27 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { applicationConstants, scoreLookUp } from "../../constants/applicationConstants";
+import { bothScoredPointOneOrTwo } from "./rules/bothScoredSame";
+import { differentScoresBetweenOneAndThree } from "./rules/differentScore";
+import { deuce } from "./rules/deuce";
+import { applicationConstants } from "../../constants/applicationConstants";
 import "./index.css";
 
-const { SCORE_TITLE, GAME_SCORE, LOVE, THRICE, ALL, LOVE_ALL, DEUCE } = applicationConstants;
+const { SCORE_TITLE, GAME_SCORE, LOVE_ALL } = applicationConstants;
+const rules = [bothScoredPointOneOrTwo, deuce, differentScoresBetweenOneAndThree];
 
 const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
   const [gameScore, setGameScore] = useState(LOVE_ALL);
 
-  const hasPlayersScoreNotMoreThanThree = () => {
-    return playerOneScore <= THRICE && playerTwoScore <= THRICE;
-  };
-
-  const hasBothPlayersScoresEqual = () => {
-    return playerOneScore === playerTwoScore;
-  };
-
-  const isPlayerScoreLessThanThree = () => {
-    return playerOneScore < THRICE;
-  };
-
-  const isPlayerScoreNotLessThanThree = () => {
-    return playerOneScore >= THRICE;
-  };
-
   const calculateGameScore = () => {
-    if (hasBothPlayersScoresEqual() && isPlayerScoreLessThanThree()) {
-      return `${scoreLookUp[playerOneScore]}${ALL}`;
+    for (const rule of rules) {
+      if (rule.isCriteriaMatched(playerOneScore, playerTwoScore)) {
+        return rule.getScore(playerOneScore, playerTwoScore);
+      }
     }
-    if (hasBothPlayersScoresEqual() && isPlayerScoreNotLessThanThree()) {
-      return DEUCE;
-    }
-    if (hasPlayersScoreNotMoreThanThree()) {
-      return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
-    }
-  };
-
-  const hasAnyPlayerStartedScoring = () => {
-    return playerOneScore > LOVE || playerTwoScore > LOVE;
   };
 
   const updateGameScore = () => {
-    if (hasAnyPlayerStartedScoring()) {
-      setGameScore(calculateGameScore());
-    }
+    setGameScore(calculateGameScore());
   };
 
   useEffect(() => {
