@@ -21,7 +21,8 @@ const {
   LOVE_FORTY,
   FIFTEEN_THIRTY,
   FIFTEEN_ALL,
-  THIRTY_ALL
+  THIRTY_ALL,
+  DEUCE
 } = testConstants;
 
 describe("Tennis Game", () => {
@@ -120,5 +121,12 @@ describe("Set Game Score", () => {
     playerTwoScores(TWICE);
 
     gameScoreShouldBe(THIRTY_ALL);
+  });
+
+  test("Deuce when both the players scores thrice", () => {
+    playerOneScores(THRICE);
+    playerTwoScores(THRICE);
+
+    gameScoreShouldBe(DEUCE);
   });
 });
