@@ -3,18 +3,7 @@ import PropTypes from "prop-types";
 import { applicationConstants, scoreLookUp } from "../../constants/applicationConstants";
 import "./index.css";
 
-const {
-  SCORE_TITLE,
-  GAME_SCORE,
-  LOVE,
-  ONCE,
-  TWICE,
-  THRICE,
-  LOVE_ALL,
-  LOVE_FIFTEEN,
-  LOVE_THIRTY,
-  LOVE_FORTY
-} = applicationConstants;
+const { SCORE_TITLE, GAME_SCORE, LOVE, ONCE, THRICE, LOVE_ALL } = applicationConstants;
 
 const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
   const [gameScore, setGameScore] = useState(LOVE_ALL);
@@ -23,17 +12,31 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
     return playerOneScore >= ONCE && playerOneScore <= THRICE;
   };
 
-  useEffect(() => {
+  const isPlayerTwoScoreBetweenOneAndThree = () => {
+    return playerTwoScore >= ONCE && playerTwoScore <= THRICE;
+  };
+
+  const calculateGameScore = () => {
     if (isPlayerOneScoreBetweenOneAndThree() && playerTwoScore === LOVE) {
-      const score = `${scoreLookUp[playerOneScore]}-Love`;
-      setGameScore(score);
-    } else if (playerOneScore === LOVE && playerTwoScore === ONCE) {
-      setGameScore(LOVE_FIFTEEN);
-    } else if (playerOneScore === LOVE && playerTwoScore === TWICE) {
-      setGameScore(LOVE_THIRTY);
-    } else if (playerOneScore === LOVE && playerTwoScore === THRICE) {
-      setGameScore(LOVE_FORTY);
+      return `${scoreLookUp[playerOneScore]}-Love`;
     }
+    if (isPlayerTwoScoreBetweenOneAndThree() && playerOneScore === LOVE) {
+      return `Love-${scoreLookUp[playerTwoScore]}`;
+    }
+  };
+
+  const hasPlayersStartedScoring = () => {
+    return playerOneScore > LOVE || playerTwoScore > LOVE;
+  };
+
+  const updateGameScore = () => {
+    if (hasPlayersStartedScoring()) {
+      setGameScore(calculateGameScore());
+    }
+  };
+
+  useEffect(() => {
+    updateGameScore();
   }, [playerOneScore, playerTwoScore]);
 
   return (
