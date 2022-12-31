@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { applicationConstants, scoreLookUp } from "../../constants/applicationConstants";
 import "./index.css";
 
-const { SCORE_TITLE, GAME_SCORE, LOVE, ONCE, TWICE, THRICE, LOVE_ALL, FIFTEEN_ALL, THIRTY_ALL } =
-  applicationConstants;
+const { SCORE_TITLE, GAME_SCORE, LOVE, ONCE, TWICE, ALL, THRICE, LOVE_ALL } = applicationConstants;
 
 const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
   const [gameScore, setGameScore] = useState(LOVE_ALL);
@@ -13,21 +12,24 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
     return playerOneScore <= THRICE && playerTwoScore <= THRICE;
   };
 
-  const hasBothPlayersScoreOnce = () => {
-    return playerOneScore === ONCE && playerTwoScore === ONCE;
+  const isPlayerScoreOnce = (playerScore) => {
+    return playerScore === ONCE;
   };
 
-  const hasBothPlayersScoresTwice = () => {
-    return playerOneScore === TWICE && playerTwoScore === TWICE;
+  const isPlayerScoreTwice = (playerScore) => {
+    return playerScore === TWICE;
+  };
+
+  const hasBothPlayersScoresEqual = () => {
+    return playerOneScore === playerTwoScore;
   };
 
   const calculateGameScore = () => {
-    if (hasBothPlayersScoreOnce()) {
-      return FIFTEEN_ALL;
-    }
-
-    if (hasBothPlayersScoresTwice()) {
-      return THIRTY_ALL;
+    if (
+      hasBothPlayersScoresEqual() &&
+      (isPlayerScoreOnce(playerOneScore) || isPlayerScoreTwice(playerOneScore))
+    ) {
+      return `${scoreLookUp[playerOneScore]}${ALL}`;
     }
 
     if (hasPlayersScoresNotMoreThanThreePoints()) {
