@@ -23,13 +23,17 @@ describe("Set Game Score", () => {
     render(<Game />);
   });
 
+  const gameScoreShouldBe = (expected) => {
+    expect(screen.getByTestId(GAME_SCORE).textContent).toEqual(expected);
+  };
+
   test("Love-All when the game starts", () => {
-    expect(screen.getByTestId(GAME_SCORE).textContent).toEqual(LOVE_ALL);
+    gameScoreShouldBe(LOVE_ALL);
   });
 
   test("Fifteen-Love when the player one scores once", () => {
     fireEvent.click(screen.getByTestId(PLAYER_ONE));
 
-    expect(screen.getByTestId(GAME_SCORE).textContent).toEqual(FIFTEEN_LOVE);
+    gameScoreShouldBe(FIFTEEN_LOVE);
   });
 });
