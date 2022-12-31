@@ -5,13 +5,15 @@ const applicationConstants = {
   PLAYER_ONE: "Player One",
   SCORES_A_POINT: 1,
   SCORED: "Scored",
-  ONE_POINT: 1,
-  TWO_POINTS: 2,
+  ONCE: 1,
+  TWICE: 2,
+  THRICE: 3,
   LOVE: 0,
   PLAYER_TITLE: "Title ",
   LOVE_ALL: "Love-All",
   FIFTEEN_LOVE: "Fifteen-Love",
-  THIRTY_LOVE: "Thirty-Love"
+  THIRTY_LOVE: "Thirty-Love",
+  FORTY_LOVE: "Forty-Love"
 };
 
 export { applicationConstants };

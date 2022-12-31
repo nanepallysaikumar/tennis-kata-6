@@ -9,9 +9,11 @@ const testConstants = {
   LOVE: 0,
   ONCE: 1,
   TWICE: 2,
+  THRICE: 3,
   LOVE_ALL: "Love-All",
   FIFTEEN_LOVE: "Fifteen-Love",
-  THIRTY_LOVE: "Thirty-Love"
+  THIRTY_LOVE: "Thirty-Love",
+  FORTY_LOVE: "Forty-Love"
 };
 
 export { testConstants };
