@@ -20,6 +20,10 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
     return playerOneScore === playerTwoScore;
   };
 
+  const isPlayerScoreLessThanThree = () => {
+    return playerOneScore < THRICE;
+  };
+
   const calculateGameScore = () => {
     if (isPlayerOneScoreBetweenOneAndThree() && playerTwoScore === LOVE) {
       return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
@@ -27,11 +31,11 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
     if (isPlayerTwoScoreBetweenOneAndThree() && playerOneScore === LOVE) {
       return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
     }
-    if (hasBothPlayersScoresEqual() && playerOneScore === ONCE) {
+    if (hasBothPlayersScoresEqual() && isPlayerScoreLessThanThree()) {
       return `${scoreLookUp[playerOneScore]}${ALL}`;
     }
-    if (hasBothPlayersScoresEqual() && playerOneScore === TWICE) {
-      return `${scoreLookUp[playerOneScore]}${ALL}`;
+    if (playerOneScore === ONCE && playerTwoScore === TWICE) {
+      return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
     }
   };
 

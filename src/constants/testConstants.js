@@ -20,7 +20,8 @@ const testConstants = {
   LOVE_THIRTY: "Love-Thirty",
   LOVE_FORTY: "Love-Forty",
   FIFTEEN_ALL: "Fifteen-All",
-  THIRTY_ALL: "Thirty-All"
+  THIRTY_ALL: "Thirty-All",
+  FIFTEEN_THIRTY: "Fifteen-Thirty"
 };
 
 export { testConstants };
