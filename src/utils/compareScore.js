@@ -14,8 +14,8 @@ const hasPlayersScoreNotMoreThanThree = (playerOneScore, playerTwoScore) => {
   return playerOneScore <= THRICE && playerTwoScore <= THRICE;
 };
 
-const isPlayerScoreLessThanThree = (playerOneScore) => {
-  return playerOneScore < THRICE;
+const isPlayerScoreLessThanThree = (playerScore) => {
+  return playerScore < THRICE;
 };
 
 const isPlayerScoreNotLessThanThree = (playerOneScore, playerTwoScore) => {

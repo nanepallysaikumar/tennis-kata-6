@@ -8,7 +8,7 @@ import { advantange } from "./rules/advantage";
 import { applicationConstants } from "../../constants/applicationConstants";
 import "./index.css";
 
-const { SCORE_TITLE, GAME_SCORE, LOVE_ALL } = applicationConstants;
+const { SCORE_TITLE, GAME_SCORE, WIN, LOVE_ALL } = applicationConstants;
 const rules = [
   bothScoredPointOneOrTwo,
   deuce,
@@ -17,7 +17,7 @@ const rules = [
   advantange
 ];
 
-const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
+const ScoreBoard = ({ playerOneScore, playerTwoScore, setGameover }) => {
   const [gameScore, setGameScore] = useState(LOVE_ALL);
 
   const calculateGameScore = () => {
@@ -31,6 +31,12 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
   const updateGameScore = () => {
     setGameScore(calculateGameScore());
   };
+
+  useEffect(() => {
+    if (gameScore.includes(WIN)) {
+      setGameover(true);
+    }
+  }, [gameScore]);
 
   useEffect(() => {
     updateGameScore();
@@ -50,7 +56,8 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
 
 ScoreBoard.propTypes = {
   playerOneScore: PropTypes.number.isRequired,
-  playerTwoScore: PropTypes.number.isRequired
+  playerTwoScore: PropTypes.number.isRequired,
+  setGameover: PropTypes.func.isRequired
 };
 
 export default ScoreBoard;

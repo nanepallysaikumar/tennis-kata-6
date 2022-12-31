@@ -12,7 +12,6 @@ const {
   ONCE,
   TWICE,
   THRICE,
-  FOUR_TIMES,
   LOVE_ALL,
   THIRTY_ALL,
   FIFTEEN_LOVE,
@@ -136,30 +135,44 @@ describe("Set Game Score", () => {
   });
 
   test("Player One Win When the player one score is greater than 3 and greater than player two score by 2", () => {
-    playerOneScores(FOUR_TIMES);
+    playerOneScores(THRICE);
     playerTwoScores(TWICE);
+    playerOneScores(ONCE);
 
     gameScoreShouldBe(PLAYER_ONE_WIN);
   });
 
   test("Player Two Win When the player two score is greater than 3 and greater than player one score by 2", () => {
+    playerTwoScores(TWICE);
     playerOneScores(ONCE);
-    playerTwoScores(FOUR_TIMES);
+    playerTwoScores(TWICE);
 
     gameScoreShouldBe(PLAYER_TWO_WIN);
   });
 
   test("Advantage Player One When the player one score is greater than 3 and greater than player two score by 1", () => {
-    playerOneScores(FOUR_TIMES);
+    playerOneScores(THRICE);
     playerTwoScores(THRICE);
+    playerOneScores(ONCE);
 
     gameScoreShouldBe(PLAYER_ONE_ADVANTAGE);
   });
 
   test("Advantage Player Two When the player two score is greater than 3 and greater than player one score by 1", () => {
+    playerTwoScores(THRICE);
     playerOneScores(THRICE);
-    playerTwoScores(FOUR_TIMES);
+    playerTwoScores(ONCE);
 
     gameScoreShouldBe(PLAYER_TWO_ADVANTAGE);
+  });
+
+  test("Winner when one of the player wins and game should be over", () => {
+    playerOneScores(ONCE);
+    playerTwoScores(TWICE);
+    playerOneScores(THRICE);
+
+    gameScoreShouldBe(PLAYER_ONE_WIN);
+    expect(screen.getByTestId(PLAYER_ONE)).toBeDisabled();
+    expect(screen.getByTestId(PLAYER_TWO)).toBeDisabled();
   });
 });

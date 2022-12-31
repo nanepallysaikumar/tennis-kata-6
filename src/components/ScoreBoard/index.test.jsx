@@ -6,7 +6,8 @@ const { SCORE_TITLE, GAME_SCORE, LOVE, LOVE_ALL } = testConstants;
 
 describe("Score Board", () => {
   beforeEach(() => {
-    render(<ScoreBoard playerOneScore={LOVE} playerTwoScore={LOVE} />);
+    const setGameover = jest.fn;
+    render(<ScoreBoard playerOneScore={LOVE} playerTwoScore={LOVE} setGameover={setGameover} />);
   });
 
   test("Should contain the heading", () => {

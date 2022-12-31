@@ -9,6 +9,7 @@ const { TITLE, PLAYER_ONE, PLAYER_TWO, SCORES_A_POINT, LOVE } = applicationConst
 const Game = () => {
   const [playerOneScore, setPlayerOneScore] = useState(LOVE);
   const [playerTwoScore, setPlayerTwoScore] = useState(LOVE);
+  const [gameOver, setGameover] = useState(false);
 
   const incrementScore = (playerName) => {
     playerName === PLAYER_ONE
@@ -21,10 +22,14 @@ const Game = () => {
       <header className="Header">
         <h1 data-testid={TITLE}>{TITLE}</h1>
       </header>
-      <ScoreBoard playerOneScore={playerOneScore} playerTwoScore={playerTwoScore} />
+      <ScoreBoard
+        playerOneScore={playerOneScore}
+        playerTwoScore={playerTwoScore}
+        setGameover={setGameover}
+      />
       <div className="container">
-        <Player name={PLAYER_ONE} onScored={incrementScore} />
-        <Player name={PLAYER_TWO} onScored={incrementScore} />
+        <Player name={PLAYER_ONE} onScored={incrementScore} gameOver={gameOver} />
+        <Player name={PLAYER_TWO} onScored={incrementScore} gameOver={gameOver} />
       </div>
     </div>
   );
