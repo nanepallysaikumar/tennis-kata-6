@@ -1,17 +1,17 @@
 import { isPlayerScoreNotLessThanThree, isScoreDifferenceIsOne } from "../../../utils/compareScore";
 import { applicationConstants } from "../../../constants/applicationConstants";
 
-const { PLAYER_ONE_ADVANTAGE } = applicationConstants;
+const { PLAYER_ONE_ADVANTAGE, PLAYER_TWO_ADVANTAGE } = applicationConstants;
 
 const isCriteriaMatched = (playerOneScore, playerTwoScore) => {
   return (
-    isPlayerScoreNotLessThanThree(playerOneScore) &&
+    isPlayerScoreNotLessThanThree(playerOneScore, playerTwoScore) &&
     isScoreDifferenceIsOne(playerOneScore, playerTwoScore)
   );
 };
 
-const getScore = () => {
-  return PLAYER_ONE_ADVANTAGE;
+const getScore = (playerOneScore, playerTwoScore) => {
+  return playerOneScore > playerTwoScore ? PLAYER_ONE_ADVANTAGE : PLAYER_TWO_ADVANTAGE;
 };
 
 const advantange = {

@@ -27,7 +27,7 @@ const isScoreDifferenceGreaterThanOne = (playerOneScore, playerTwoScore) => {
 };
 
 const isScoreDifferenceIsOne = (playerOneScore, playerTwoScore) => {
-  return playerOneScore - playerTwoScore === ONCE;
+  return Math.abs(playerOneScore - playerTwoScore) === ONCE;
 };
 
 export {
