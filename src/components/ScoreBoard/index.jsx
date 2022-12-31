@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import { bothScoredPointOneOrTwo } from "./rules/bothScoredSame";
 import { differentScoresBetweenOneAndThree } from "./rules/differentScore";
 import { deuce } from "./rules/deuce";
+import { playerWins } from "./rules/win";
 import { applicationConstants } from "../../constants/applicationConstants";
 import "./index.css";
 
 const { SCORE_TITLE, GAME_SCORE, LOVE_ALL } = applicationConstants;
-const rules = [bothScoredPointOneOrTwo, deuce, differentScoresBetweenOneAndThree];
+const rules = [bothScoredPointOneOrTwo, deuce, differentScoresBetweenOneAndThree, playerWins];
 
 const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
   const [gameScore, setGameScore] = useState(LOVE_ALL);

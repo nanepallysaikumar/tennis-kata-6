@@ -12,6 +12,7 @@ const testConstants = {
   ONCE: 1,
   TWICE: 2,
   THRICE: 3,
+  FOUR_TIMES: 4,
   LOVE_ALL: "Love-All",
   FIFTEEN_LOVE: "Fifteen-Love",
   THIRTY_LOVE: "Thirty-Love",
@@ -22,7 +23,8 @@ const testConstants = {
   FIFTEEN_ALL: "Fifteen-All",
   THIRTY_ALL: "Thirty-All",
   FIFTEEN_THIRTY: "Fifteen-Thirty",
-  DEUCE: "Deuce"
+  DEUCE: "Deuce",
+  PLAYER_ONE_WIN: "Player One Win"
 };
 
 export { testConstants };
