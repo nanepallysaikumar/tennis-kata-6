@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { applicationConstants, scoreLookUp } from "../../constants/applicationConstants";
 import "./index.css";
 
-const { SCORE_TITLE, GAME_SCORE, ONCE, THRICE, LOVE_ALL } = applicationConstants;
+const { SCORE_TITLE, GAME_SCORE, LOVE, ONCE, THRICE, LOVE_ALL, LOVE_FIFTEEN } =
+  applicationConstants;
 
-const ScoreBoard = ({ playerOneScore }) => {
+const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
   const [gameScore, setGameScore] = useState(LOVE_ALL);
 
   const isPlayerOneScoreBetweenOneAndThree = () => {
@@ -13,11 +14,13 @@ const ScoreBoard = ({ playerOneScore }) => {
   };
 
   useEffect(() => {
-    if (isPlayerOneScoreBetweenOneAndThree()) {
+    if (isPlayerOneScoreBetweenOneAndThree() && playerTwoScore === LOVE) {
       const score = `${scoreLookUp[playerOneScore]}-Love`;
       setGameScore(score);
+    } else if (playerOneScore === LOVE && playerTwoScore === ONCE) {
+      setGameScore(LOVE_FIFTEEN);
     }
-  }, [playerOneScore]);
+  }, [playerOneScore, playerTwoScore]);
 
   return (
     <div>
@@ -32,7 +35,8 @@ const ScoreBoard = ({ playerOneScore }) => {
 };
 
 ScoreBoard.propTypes = {
-  playerOneScore: PropTypes.number.isRequired
+  playerOneScore: PropTypes.number.isRequired,
+  playerTwoScore: PropTypes.number.isRequired
 };
 
 export default ScoreBoard;

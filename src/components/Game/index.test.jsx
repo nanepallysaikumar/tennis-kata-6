@@ -7,6 +7,7 @@ const {
   SCORE_TITLE,
   GAME_SCORE,
   PLAYER_ONE,
+  PLAYER_TWO,
   ZERO,
   ONCE,
   TWICE,
@@ -14,7 +15,8 @@ const {
   LOVE_ALL,
   FIFTEEN_LOVE,
   THIRTY_LOVE,
-  FORTY_LOVE
+  FORTY_LOVE,
+  LOVE_FIFTEEN
 } = testConstants;
 
 describe("Tennis Game", () => {
@@ -40,10 +42,18 @@ describe("Set Game Score", () => {
     expect(screen.getByTestId(GAME_SCORE).textContent).toEqual(expected);
   };
 
-  const playerOneScores = (times) => {
+  const playerScores = (times, playerName) => {
     for (let count = ZERO; count < times; count++) {
-      fireEvent.click(screen.getByTestId(PLAYER_ONE));
+      fireEvent.click(screen.getByTestId(playerName));
     }
+  };
+
+  const playerOneScores = (times) => {
+    playerScores(times, PLAYER_ONE);
+  };
+
+  const playerTwoScores = (times) => {
+    playerScores(times, PLAYER_TWO);
   };
 
   test("Love-All when the game starts", () => {
@@ -66,5 +76,11 @@ describe("Set Game Score", () => {
     playerOneScores(THRICE);
 
     gameScoreShouldBe(FORTY_LOVE);
+  });
+
+  test("Love-Fifteen when the player two scores once and player one scores zero", () => {
+    playerTwoScores(ONCE);
+
+    gameScoreShouldBe(LOVE_FIFTEEN);
   });
 });
