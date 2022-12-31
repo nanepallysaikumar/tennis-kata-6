@@ -26,10 +26,15 @@ const isScoreDifferenceGreaterThanOne = (playerOneScore, playerTwoScore) => {
   return Math.abs(playerOneScore - playerTwoScore) > ONCE;
 };
 
+const isScoreDifferenceIsOne = (playerOneScore, playerTwoScore) => {
+  return playerOneScore - playerTwoScore === ONCE;
+};
+
 export {
   isPlayerScoreLessThanThree,
   isPlayerScoreNotLessThanThree,
   isScoreDifferenceGreaterThanOne,
+  isScoreDifferenceIsOne,
   hasAnyPlayerStartedScoring,
   hasBothPlayersScoresEqual,
   hasPlayersScoreNotMoreThanThree
