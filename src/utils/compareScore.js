@@ -18,12 +18,12 @@ const isPlayerScoreLessThanThree = (playerOneScore) => {
   return playerOneScore < THRICE;
 };
 
-const isPlayerScoreNotLessThanThree = (playerOneScore) => {
-  return playerOneScore >= THRICE;
+const isPlayerScoreNotLessThanThree = (playerOneScore, playerTwoScore) => {
+  return playerOneScore >= THRICE || playerTwoScore >= THRICE;
 };
 
 const isScoreDifferenceGreaterThanOne = (playerOneScore, playerTwoScore) => {
-  return playerOneScore - playerTwoScore > ONCE;
+  return Math.abs(playerOneScore - playerTwoScore) > ONCE;
 };
 
 export {
