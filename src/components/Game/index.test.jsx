@@ -13,6 +13,7 @@ const {
   TWICE,
   THRICE,
   LOVE_ALL,
+  THIRTY_ALL,
   FIFTEEN_LOVE,
   THIRTY_LOVE,
   FORTY_LOVE,
@@ -104,5 +105,12 @@ describe("Set Game Score", () => {
     playerTwoScores(ONCE);
 
     gameScoreShouldBe(FIFTEEN_ALL);
+  });
+
+  test("Thirty-All when both the players scores twice", () => {
+    playerOneScores(TWICE);
+    playerTwoScores(TWICE);
+
+    gameScoreShouldBe(THIRTY_ALL);
   });
 });
