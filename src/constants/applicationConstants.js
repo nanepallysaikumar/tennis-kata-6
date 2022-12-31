@@ -11,7 +11,8 @@ const applicationConstants = {
   THRICE: 3,
   LOVE: 0,
   PLAYER_TITLE: "Title ",
-  LOVE_ALL: "Love-All"
+  LOVE_ALL: "Love-All",
+  FIFTEEN_ALL: "Fifteen-All"
 };
 
 const scoreLookUp = {
