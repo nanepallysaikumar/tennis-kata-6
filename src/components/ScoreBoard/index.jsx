@@ -18,19 +18,19 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
 
   const calculateGameScore = () => {
     if (isPlayerOneScoreBetweenOneAndThree() && playerTwoScore === LOVE) {
-      return `${scoreLookUp[playerOneScore]}-Love`;
+      return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
     }
     if (isPlayerTwoScoreBetweenOneAndThree() && playerOneScore === LOVE) {
-      return `Love-${scoreLookUp[playerTwoScore]}`;
+      return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
     }
   };
 
-  const hasPlayersStartedScoring = () => {
+  const hasAnyPlayerStartedScoring = () => {
     return playerOneScore > LOVE || playerTwoScore > LOVE;
   };
 
   const updateGameScore = () => {
-    if (hasPlayersStartedScoring()) {
+    if (hasAnyPlayerStartedScoring()) {
       setGameScore(calculateGameScore());
     }
   };

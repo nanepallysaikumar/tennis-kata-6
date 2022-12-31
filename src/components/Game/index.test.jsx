@@ -80,19 +80,19 @@ describe("Set Game Score", () => {
     gameScoreShouldBe(FORTY_LOVE);
   });
 
-  test("Love-Fifteen when the player two scores once and player one scores zero", () => {
+  test("Love-Fifteen when the player two scores once", () => {
     playerTwoScores(ONCE);
 
     gameScoreShouldBe(LOVE_FIFTEEN);
   });
 
-  test("Love-Thirty when the player two scores twice and player one scores zero", () => {
+  test("Love-Thirty when the player two scores twice", () => {
     playerTwoScores(TWICE);
 
     gameScoreShouldBe(LOVE_THIRTY);
   });
 
-  test("Love-Thirty when the player two scores thrice and player one scores zero", () => {
+  test("Love-Forty when the player two scores thrice", () => {
     playerTwoScores(THRICE);
 
     gameScoreShouldBe(LOVE_FORTY);
