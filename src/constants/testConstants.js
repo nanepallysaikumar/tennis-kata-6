@@ -7,7 +7,8 @@ const testConstants = {
   SCORED: "Scored",
   LOVE: 0,
   LOVE_ALL: "Love-All",
-  FIFTEEN_LOVE: "Fifteen-Love"
+  FIFTEEN_LOVE: "Fifteen-Love",
+  THIRTY_LOVE: "Thirty-Love"
 };
 
 export { testConstants };

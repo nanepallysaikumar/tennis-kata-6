@@ -2,7 +2,8 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { testConstants } from "../../constants/testConstants";
 import Game from "./";
 
-const { TITLE, SCORE_TITLE, GAME_SCORE, PLAYER_ONE, LOVE_ALL, FIFTEEN_LOVE } = testConstants;
+const { TITLE, SCORE_TITLE, GAME_SCORE, PLAYER_ONE, LOVE_ALL, FIFTEEN_LOVE, THIRTY_LOVE } =
+  testConstants;
 
 describe("Tennis Game", () => {
   beforeEach(() => {
@@ -35,5 +36,12 @@ describe("Set Game Score", () => {
     fireEvent.click(screen.getByTestId(PLAYER_ONE));
 
     gameScoreShouldBe(FIFTEEN_LOVE);
+  });
+
+  test("Thirty-Love when the player one scores twice", () => {
+    fireEvent.click(screen.getByTestId(PLAYER_ONE));
+    fireEvent.click(screen.getByTestId(PLAYER_ONE));
+
+    gameScoreShouldBe(THIRTY_LOVE);
   });
 });
