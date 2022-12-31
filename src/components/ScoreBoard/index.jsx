@@ -8,12 +8,8 @@ const { SCORE_TITLE, GAME_SCORE, LOVE, ONCE, TWICE, THRICE, ALL, LOVE_ALL } = ap
 const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
   const [gameScore, setGameScore] = useState(LOVE_ALL);
 
-  const isPlayerOneScoreBetweenOneAndThree = () => {
-    return playerOneScore >= ONCE && playerOneScore <= THRICE;
-  };
-
-  const isPlayerTwoScoreBetweenOneAndThree = () => {
-    return playerTwoScore >= ONCE && playerTwoScore <= THRICE;
+  const hasPlayersScoreNotMoreThanThree = () => {
+    return playerOneScore <= THRICE && playerTwoScore <= THRICE;
   };
 
   const hasBothPlayersScoresEqual = () => {
@@ -25,16 +21,10 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
   };
 
   const calculateGameScore = () => {
-    if (isPlayerOneScoreBetweenOneAndThree() && playerTwoScore === LOVE) {
-      return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
-    }
-    if (isPlayerTwoScoreBetweenOneAndThree() && playerOneScore === LOVE) {
-      return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
-    }
     if (hasBothPlayersScoresEqual() && isPlayerScoreLessThanThree()) {
       return `${scoreLookUp[playerOneScore]}${ALL}`;
     }
-    if (playerOneScore === ONCE && playerTwoScore === TWICE) {
+    if (hasPlayersScoreNotMoreThanThree()) {
       return `${scoreLookUp[playerOneScore]}-${scoreLookUp[playerTwoScore]}`;
     }
   };
