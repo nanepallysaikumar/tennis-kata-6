@@ -15,7 +15,8 @@ const applicationConstants = {
   LOVE_ALL: "Love-All",
   LOVE_FIFTEEN: "Love-Fifteen",
   LOVE_THIRTY: "Love-Thirty",
-  LOVE_FORTY: "Love-Forty"
+  LOVE_FORTY: "Love-Forty",
+  DEUCE: "Deuce"
 };
 
 const scoreLookUp = {
