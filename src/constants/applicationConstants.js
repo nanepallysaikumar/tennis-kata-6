@@ -7,11 +7,13 @@ const applicationConstants = {
   SCORES_A_POINT: 1,
   SCORED: "Scored",
   ONCE: 1,
+  TWICE: 2,
   THRICE: 3,
   LOVE: 0,
   PLAYER_TITLE: "Title ",
   LOVE_ALL: "Love-All",
-  LOVE_FIFTEEN: "Love-Fifteen"
+  LOVE_FIFTEEN: "Love-Fifteen",
+  LOVE_THIRTY: "Love-Thirty"
 };
 
 const scoreLookUp = {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { applicationConstants, scoreLookUp } from "../../constants/applicationConstants";
 import "./index.css";
 
-const { SCORE_TITLE, GAME_SCORE, LOVE, ONCE, THRICE, LOVE_ALL, LOVE_FIFTEEN } =
+const { SCORE_TITLE, GAME_SCORE, LOVE, ONCE, TWICE, THRICE, LOVE_ALL, LOVE_FIFTEEN, LOVE_THIRTY } =
   applicationConstants;
 
 const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
@@ -19,6 +19,8 @@ const ScoreBoard = ({ playerOneScore, playerTwoScore }) => {
       setGameScore(score);
     } else if (playerOneScore === LOVE && playerTwoScore === ONCE) {
       setGameScore(LOVE_FIFTEEN);
+    } else if (playerOneScore === LOVE && playerTwoScore === TWICE) {
+      setGameScore(LOVE_THIRTY);
     }
   }, [playerOneScore, playerTwoScore]);
 
