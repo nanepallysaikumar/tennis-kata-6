@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { applicationConstants } from "../../constants/applicationConstants";
+import "./index.css";
 
 const { PLAYER_TITLE, SCORED } = applicationConstants;
 
